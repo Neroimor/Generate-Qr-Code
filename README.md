@@ -83,6 +83,7 @@ public static void saveImage(BufferedImage image, String filePath) throws Except
 }
 ```
 
-
+## Результат
+![QRCode](https://github.com/user-attachments/assets/6c2ad6e8-cd7d-46d7-8abb-4b4906a75fc9)
 
 
