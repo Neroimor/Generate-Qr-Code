@@ -73,6 +73,29 @@ for (int i = 0; i < 200; i++) {
 ```
 
 `matrix.get(i, j)` - возвращает булево значение `true`если пиксель черный и `false` если пиксель белый
+
+#### Весь метод
+```java
+public static void generateQrCode(String data, String filePath) throws Exception {
+        //Устанавливаем параметры для генерации QR-кода
+        Map<EncodeHintType,Object> hintMap = new HashMap<>();
+        //Устанавливаем отступы вокруг QR-кода
+        hintMap.put(EncodeHintType.MARGIN, 1);
+        //Генерация QR кода
+        BitMatrix matrix = new MultiFormatWriter()
+                .encode(data, BarcodeFormat.QR_CODE, 400,400 ,hintMap);
+
+        // Преобразуем BitMatrix в изображение
+        BufferedImage image = new BufferedImage(400, 400, BufferedImage.TYPE_INT_RGB);
+        for (int i = 0; i < 400; i++) {
+            for (int j = 0; j < 400; j++) {
+                image.setRGB(i, j, matrix.get(i, j) ? Color.BLACK.getRGB() : Color.WHITE.getRGB());
+            }
+        }
+        saveImage(image, filePath);
+    }
+```
+
 ## Метод сохранения
 
 ```java
